@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MapDisplay : MonoBehaviour
 {
+    // get the Renderer component of the plane
     public Renderer textureRender;
 
     public void DrawNoiseMap(float[,] noiseMap)
@@ -24,8 +25,9 @@ public class MapDisplay : MonoBehaviour
 
         texture.SetPixels(colorMap);
         texture.Apply();
-
+        //use this instead to see results in the editor instead of only at runtime
         textureRender.sharedMaterial.mainTexture = texture;
+        //set the plane to the same size as the map 
         textureRender.transform.localScale = new Vector3(width, 1, height);
     }
 }
