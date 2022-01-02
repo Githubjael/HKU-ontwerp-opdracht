@@ -1102,3 +1102,11 @@ Received Import Request.
 Start importing Assets/Materials using Guid(fd5916cd1586019418f3d29b972b4321) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '45ec7c4ee8f841cddeb827c685184802') in 0.006015 seconds 
   Import took 0.010893 seconds .
 
+========================================================================
+Received Import Request.
+  Time since last request: 658.540094 seconds.
+  path: Assets/Materials/Map-Mat.mat
+  artifactKey: Guid(1a7038f12f42f9f48b6aa99f053420fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Map-Mat.mat using Guid(1a7038f12f42f9f48b6aa99f053420fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '030c90c3ff8a4824784680db5730f366') in 0.119395 seconds 
+  Import took 0.123594 seconds .
+
