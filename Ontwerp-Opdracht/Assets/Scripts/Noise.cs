@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public static class Noise
@@ -7,7 +5,7 @@ public static class Noise
     public static float[,] GenerateNoiseMap(int mapWidth, int mapHeight, float scale)
     {
         float[,] noiseMap = new float[mapWidth, mapHeight];
-
+        //scale mag niet 0 zijn, anders krijgen we sommen als 25 / 0
         if(scale <= 0)
         {
             scale = 0.0001f;

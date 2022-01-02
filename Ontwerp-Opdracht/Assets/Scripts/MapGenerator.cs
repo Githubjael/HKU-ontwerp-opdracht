@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GenerateMap : MonoBehaviour
+public class MapGenerator : MonoBehaviour
 {
     public int mapWidth;
     public int mapHeight;
@@ -10,6 +10,6 @@ public class GenerateMap : MonoBehaviour
 
     public void GenerateMap()
     {
-
+        float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, noiseScale);
     }
 }
