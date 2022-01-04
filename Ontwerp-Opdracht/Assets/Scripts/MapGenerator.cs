@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
+    //om te bepalen als de resultaten in black/white noise moet zijn of in kleur
     public enum DrawMode {noiseMap, colorMap }
     public DrawMode drawMode;
     
@@ -59,18 +60,22 @@ public class MapGenerator : MonoBehaviour
 
     private void OnValidate()
     {
+        //mapWidth mag niet onder 1
         if(mapWidth < 1)
         {
             mapWidth = 1;
         }
-        if(mapHeight < 1)
+        //mapHeight mag niet onder 1
+        if (mapHeight < 1)
         {
             mapHeight = 1;
         }
+        //lacunarity mag niet onder 1
         if(lacunarity < 1)
         {
             lacunarity = 1;
         }
+        //octaves mag niet onder 0
         if(octaves < 0)
         {
             octaves = 0;
