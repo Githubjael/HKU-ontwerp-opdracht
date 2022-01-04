@@ -36,6 +36,7 @@ public class MapGenerator : MonoBehaviour
                 float currentHeight = noiseMap[x, y];
                 for(int i = 0; i < regions.Length; i++)
                 {
+                    // om color op het map te plaatsen
                     if(currentHeight <= regions[i].height)
                     {
                         colorMap[y * mapWidth + x] = regions[i].color;
@@ -75,7 +76,7 @@ public class MapGenerator : MonoBehaviour
             octaves = 0;
         }
     }
-
+    //Om terrain te maken
     [System.Serializable]
     public struct TerrainType
     {
