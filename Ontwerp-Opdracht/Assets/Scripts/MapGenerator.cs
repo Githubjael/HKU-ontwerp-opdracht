@@ -24,4 +24,16 @@ public class MapGenerator : MonoBehaviour
         MapDisplay display = FindObjectOfType<MapDisplay>();
         display.DrawNoiseMap(noiseMap);
     }
+
+    private void OnValidate()
+    {
+        if(mapWidth < 1)
+        {
+            mapWidth = 1;
+        }
+        if(mapHeight < 1)
+        {
+            mapHeight = 1;
+        }
+    }
 }
