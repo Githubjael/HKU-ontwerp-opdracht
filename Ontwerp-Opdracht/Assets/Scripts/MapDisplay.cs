@@ -6,6 +6,8 @@ public class MapDisplay : MonoBehaviour
 {
     // get the Renderer component of the plane
     public Renderer textureRender;
+    public MeshFilter meshFilter;
+    public MeshRenderer meshRenderer;
 
     public void DrawTexture(Texture2D texture)
     {
@@ -13,5 +15,11 @@ public class MapDisplay : MonoBehaviour
         textureRender.sharedMaterial.mainTexture = texture;
         //set the plane to the same size as the map 
         textureRender.transform.localScale = new Vector3(texture.width, 1, texture.height);
+    }
+
+    public void DrawMesh(MeshData meshData, Texture2D texture)
+    {
+        meshFilter.sharedMesh = meshData.CreateMesh();
+        meshRenderer.sharedMaterial.mainTexture = texture;
     }
 }
