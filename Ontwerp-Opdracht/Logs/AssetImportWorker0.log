@@ -957,3 +957,19 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 7728.272743 seconds.
+  path: Assets/Materials/Map-Mat.mat
+  artifactKey: Guid(1a7038f12f42f9f48b6aa99f053420fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Map-Mat.mat using Guid(1a7038f12f42f9f48b6aa99f053420fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '74d773014e952faac2de9565b2f67988') in 0.134996 seconds 
+  Import took 0.138916 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 27.110991 seconds.
+  path: Assets/Materials/Mesh-Mat.mat
+  artifactKey: Guid(7042e5e530ecc1d468c5284492de18ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Mesh-Mat.mat using Guid(7042e5e530ecc1d468c5284492de18ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '284ed23c680d6baa703cc1c3d9a25278') in 0.029119 seconds 
+  Import took 0.034041 seconds .
+
