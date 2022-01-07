@@ -80,6 +80,7 @@ public class EndlessTerrain : MonoBehaviour
             meshObject = new GameObject("Terrain Chunk");
             meshRenderer = meshObject.AddComponent<MeshRenderer>();
             meshFilter = meshObject.AddComponent<MeshFilter>();
+
             meshRenderer.material = material;
             meshObject.transform.position = positionV3;
             meshObject.transform.parent = parent;

@@ -36,6 +36,7 @@ public class MapGenerator : MonoBehaviour
     public void DrawMapInEditor()
     {
         MapData mapData = GenerateMapData();
+
         MapDisplay display = FindObjectOfType<MapDisplay>();
         if (drawMode == DrawMode.noiseMap)
         {
@@ -58,6 +59,7 @@ public class MapGenerator : MonoBehaviour
         {
             MapDataThread(callback);
         };
+
         new Thread(threadStart).Start();
     }
     public void MapDataThread(Action<MapData> callback)
@@ -155,7 +157,7 @@ public class MapGenerator : MonoBehaviour
             this.parameter = parameter;
         }
     }
-    }    
+}    
     //Om terrain te maken
     [System.Serializable]
     public struct TerrainType

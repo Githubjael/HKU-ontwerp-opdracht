@@ -855,3 +855,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Viewer: {fileID: 571541137}
+  mapMaterial: {fileID: 2100000, guid: 7042e5e530ecc1d468c5284492de18ae, type: 2}
