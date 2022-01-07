@@ -28,7 +28,26 @@ public class MapGenerator : MonoBehaviour
 
     public TerrainType[] regions;
 
-    public void GenerateMap()
+    public void DrawMapInEditor()
+    {
+        MapData mapData = GenerateMapData();
+        MapDisplay display = FindObjectOfType<MapDisplay>();
+        if (drawMode == DrawMode.noiseMap)
+        {
+            display.DrawTexture(TextureGenerator.TextureFromHeightMap(mapData.heightMap));
+        }
+        else if (drawMode == DrawMode.colorMap)
+        {
+            display.DrawTexture(TextureGenerator.TextureFromColorMap(mapData.colorMap, mapChunkSize, mapChunkSize));
+        }
+        else if (drawMode == DrawMode.Mesh)
+        {
+            display.DrawMesh(MeshGenerator.GenerateTerrainMesh(mapData.heightMap, meshHeightMultiplier, meshHeightCurve, levelOfDetail),
+                TextureGenerator.TextureFromColorMap(mapData.colorMap, mapChunkSize, mapChunkSize));
+        }
+    }
+
+    MapData GenerateMapData()
     {
         float[,] noiseMap = Noise.GenerateNoiseMap(mapChunkSize, mapChunkSize, seed, noiseScale, octaves, persistance, lacunarity, offset);
 
@@ -48,10 +67,11 @@ public class MapGenerator : MonoBehaviour
                         break;
                     }
                 }
-            } 
+            }
         }
+            return new MapData(noiseMap, colorMap);
 
-        MapDisplay display = FindObjectOfType<MapDisplay>();
+/*        MapDisplay display = FindObjectOfType<MapDisplay>();
         if(drawMode == DrawMode.noiseMap)
         {
             display.DrawTexture(TextureGenerator.TextureFromHeightMap(noiseMap));
@@ -63,7 +83,7 @@ public class MapGenerator : MonoBehaviour
         else if (drawMode == DrawMode.Mesh)
         {
             display.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap, meshHeightMultiplier, meshHeightCurve, levelOfDetail), TextureGenerator.TextureFromColorMap(colorMap, mapChunkSize, mapChunkSize));
-        }
+        }*/
     }
 
     private void OnValidate()
@@ -86,5 +106,17 @@ public class MapGenerator : MonoBehaviour
         public string name;
         public float height;
         public Color color;
+    }
+
+    public struct MapData
+    {
+        public float[,] heightMap;
+        public Color[] colorMap;
+
+        public MapData(float[,] heightMap, Color[] colorMap)
+        {
+            this.heightMap = heightMap;
+            this.colorMap = colorMap;
+        }
     }
 }
