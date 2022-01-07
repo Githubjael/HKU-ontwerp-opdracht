@@ -30,6 +30,8 @@ public class MapGenerator : MonoBehaviour
 
     public TerrainType[] regions;
 
+    Queue<MapThreadInfo<MapData>> mapDataThreadInfoQueue = new Queue<MapThreadInfo<MapData>>();
+
     public void DrawMapInEditor()
     {
         MapData mapData = GenerateMapData();
@@ -51,7 +53,31 @@ public class MapGenerator : MonoBehaviour
 
     public void RequestMapData(Action<MapData> callback)
     {
+        ThreadStart threadStart = delegate
+        {
+            MapDataThread(callback);
+        };
+        new Thread(threadStart).Start();
+    }
+    public void MapDataThread(Action<MapData> callback)
+    {
+        MapData mapData = GenerateMapData();
+        lock (mapDataThreadInfoQueue)
+        {
+            mapDataThreadInfoQueue.Enqueue(new MapThreadInfo<MapData>(callback, mapData));
+        }
+    }
 
+    public void Update()
+    {
+        if(mapDataThreadInfoQueue.Count > 0)
+        {
+            for(int i  = 0; i < mapDataThreadInfoQueue.Count; i++)
+            {
+                MapThreadInfo<MapData> threadInfo = mapDataThreadInfoQueue.Dequeue();
+                threadInfo.callback(threadInfo.parameter);
+            }
+        }
     }
 
     MapData GenerateMapData()
@@ -93,6 +119,19 @@ public class MapGenerator : MonoBehaviour
             octaves = 0;
         }
     }
+
+    struct MapThreadInfo<T>
+    {
+        public readonly Action<T> callback;
+        public readonly T parameter;
+
+        public MapThreadInfo(Action<T> callback, T parameter)
+        {
+            this.callback = callback;
+            this.parameter = parameter;
+        }
+    }
+    }    
     //Om terrain te maken
     [System.Serializable]
     public struct TerrainType
@@ -104,13 +143,12 @@ public class MapGenerator : MonoBehaviour
 
     public struct MapData
     {
-        public float[,] heightMap;
-        public Color[] colorMap;
+        public readonly float[,] heightMap;
+        public readonly Color[] colorMap;
 
         public MapData(float[,] heightMap, Color[] colorMap)
         {
             this.heightMap = heightMap;
             this.colorMap = colorMap;
         }
-    }
 }
