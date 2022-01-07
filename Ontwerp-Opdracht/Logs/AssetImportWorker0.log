@@ -201,3 +201,59 @@ Received Import Request.
 Start importing Assets/Scripts/MapGenerator.cs using Guid(96c69226a66bbad4bade1f711c89fc30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2ca6036f8aacce63a6791da1ccecef9c') in 0.004487 seconds 
   Import took 0.009272 seconds .
 
+========================================================================
+Received Import Request.
+  Time since last request: 351.504777 seconds.
+  path: Assets/Scripts/MapGenerator.cs
+  artifactKey: Guid(96c69226a66bbad4bade1f711c89fc30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/MapGenerator.cs using Guid(96c69226a66bbad4bade1f711c89fc30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f200a8f4797f7bddaef23ac194fb72ea') in 0.004769 seconds 
+  Import took 0.009529 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.860931 seconds.
+  path: Assets/Scripts/MapGenerator.cs
+  artifactKey: Guid(96c69226a66bbad4bade1f711c89fc30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/MapGenerator.cs using Guid(96c69226a66bbad4bade1f711c89fc30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6c4ff30365e685a4cf649691c24e2217') in 0.003959 seconds 
+  Import took 0.009537 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.771367 seconds.
+  path: Assets/Scripts/MapGenerator.cs
+  artifactKey: Guid(96c69226a66bbad4bade1f711c89fc30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/MapGenerator.cs using Guid(96c69226a66bbad4bade1f711c89fc30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd63759f4f93847ae2f2e0cf660ec6538') in 0.003773 seconds 
+  Import took 0.008994 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 27.170453 seconds.
+  path: Assets/Scripts/MapGenerator.cs
+  artifactKey: Guid(96c69226a66bbad4bade1f711c89fc30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/MapGenerator.cs using Guid(96c69226a66bbad4bade1f711c89fc30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '56df3a35e2d77c115213684661aae544') in 0.004329 seconds 
+  Import took 0.008964 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 22.754596 seconds.
+  path: Assets/Scripts/MapGenerator.cs
+  artifactKey: Guid(96c69226a66bbad4bade1f711c89fc30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/MapGenerator.cs using Guid(96c69226a66bbad4bade1f711c89fc30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7b215734f3852c8c842870670f1b879c') in 0.004289 seconds 
+  Import took 0.009741 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001578 seconds.
+  path: Assets/Scripts/MapGenerator.cs
+  artifactKey: Guid(96c69226a66bbad4bade1f711c89fc30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/MapGenerator.cs using Guid(96c69226a66bbad4bade1f711c89fc30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7b215734f3852c8c842870670f1b879c') in 0.004550 seconds 
+  Import took 0.009518 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 115.193609 seconds.
+  path: Assets/Scripts/MapGenerator.cs
+  artifactKey: Guid(96c69226a66bbad4bade1f711c89fc30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/MapGenerator.cs using Guid(96c69226a66bbad4bade1f711c89fc30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f521630574f4f8561719c25093bfb962') in 0.003441 seconds 
+  Import took 0.007434 seconds .
+

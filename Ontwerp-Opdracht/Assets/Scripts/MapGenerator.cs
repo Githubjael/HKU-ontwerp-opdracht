@@ -1,3 +1,5 @@
+using System;
+using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,6 +49,11 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
+    public void RequestMapData(Action<MapData> callback)
+    {
+
+    }
+
     MapData GenerateMapData()
     {
         float[,] noiseMap = Noise.GenerateNoiseMap(mapChunkSize, mapChunkSize, seed, noiseScale, octaves, persistance, lacunarity, offset);
@@ -69,21 +76,8 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
-            return new MapData(noiseMap, colorMap);
 
-/*        MapDisplay display = FindObjectOfType<MapDisplay>();
-        if(drawMode == DrawMode.noiseMap)
-        {
-            display.DrawTexture(TextureGenerator.TextureFromHeightMap(noiseMap));
-        }
-        else if(drawMode == DrawMode.colorMap)
-        {
-            display.DrawTexture(TextureGenerator.TextureFromColorMap(colorMap, mapChunkSize, mapChunkSize));
-        }
-        else if (drawMode == DrawMode.Mesh)
-        {
-            display.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap, meshHeightMultiplier, meshHeightCurve, levelOfDetail), TextureGenerator.TextureFromColorMap(colorMap, mapChunkSize, mapChunkSize));
-        }*/
+        return new MapData(noiseMap, colorMap);
     }
 
     private void OnValidate()
