@@ -111,7 +111,7 @@ public class EndlessTerrain : MonoBehaviour
             lodMeshes = new LODMesh[detailLevels.Length];
             for(int i = 0; i < detailLevels.Length; i++)
             {
-                lodMeshes[i] = new LODMesh(detailLevels[i].lod);
+                lodMeshes[i] = new LODMesh(detailLevels[i].lod, updateTerrainChunk);
             }
 
             mapGenerator.RequestMapData(OnMapDataReceived);
@@ -121,6 +121,8 @@ public class EndlessTerrain : MonoBehaviour
         {
             this.mapData = mapData;
             mapDataReceived = true;
+
+            updateTerrainChunk();
         }
 
 
@@ -183,9 +185,11 @@ public class EndlessTerrain : MonoBehaviour
         public bool hasRequestedMesh;
         public bool hasMesh;
         int lod;
+        System.Action updateCallback;
 
-        public LODMesh(int lod)
+        public LODMesh(int lod, System.Action updateCallback)
         {
+            this.updateCallback = updateCallback;
             this.lod = lod;
         }
 
@@ -193,6 +197,8 @@ public class EndlessTerrain : MonoBehaviour
         {
             mesh = meshData.CreateMesh();
             hasMesh = true;
+
+            updateCallback();
         }
 
         public void RequestMesh(MapData mapData)
