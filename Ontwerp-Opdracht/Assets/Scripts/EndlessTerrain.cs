@@ -118,4 +118,29 @@ public class EndlessTerrain : MonoBehaviour
             return meshObject.activeSelf;
         }
     }
+
+    class LODMesh
+    {
+        public Mesh mesh;
+        public bool hasRequestedMesh;
+        public bool hasMesh;
+        int lod;
+
+        public LODMesh(int lod)
+        {
+            this.lod = lod;
+        }
+
+        void OnMeshDataReceived(MeshData meshData)
+        {
+            mesh = meshData.CreateMesh();
+            hasMesh = true;
+        }
+
+        public void RequestMesh(MapData mapData)
+        {
+            hasRequestedMesh = true;
+            mapGenerator.RequestMeshData(mapData, OnMeshDataReceived);
+        }
+    }
 }
