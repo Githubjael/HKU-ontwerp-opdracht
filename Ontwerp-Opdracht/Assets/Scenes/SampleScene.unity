@@ -854,5 +854,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fe34507a8da19428c2774deff891b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detailLevels:
+  - lod: 0
+    visibleDstThreshold: 200
+  - lod: 4
+    visibleDstThreshold: 400
+  - lod: 6
+    visibleDstThreshold: 600
   Viewer: {fileID: 571541137}
   mapMaterial: {fileID: 2100000, guid: 7042e5e530ecc1d468c5284492de18ae, type: 2}
