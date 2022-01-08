@@ -5,6 +5,8 @@ using UnityEngine;
 public class EndlessTerrain : MonoBehaviour
 {
     public const float maxViewDistance = 450;
+    public LOD[] detailLevels;
+
     public Transform Viewer;
     public Material mapMaterial;
 
@@ -93,13 +95,9 @@ public class EndlessTerrain : MonoBehaviour
 
         void OnMapDataReceived(MapData mapData)
         {
-            mapGenerator.RequestMeshData(mapData, OnMeshDataReceived);
+            //mapGenerator.RequestMeshData(mapData, OnMeshDataReceived);
         }
 
-        void OnMeshDataReceived(MeshData meshData)
-        {
-            meshFilter.mesh = meshData.CreateMesh();
-        }
 
         public void updateTerrainChunk()
         {
@@ -140,7 +138,14 @@ public class EndlessTerrain : MonoBehaviour
         public void RequestMesh(MapData mapData)
         {
             hasRequestedMesh = true;
-            mapGenerator.RequestMeshData(mapData, OnMeshDataReceived);
+            mapGenerator.RequestMeshData(mapData, lod, OnMeshDataReceived);
         }
+    }
+
+    [System.Serializable]
+    public struct LODInfo
+    {
+        public int lod;
+        public float visibleDstThreshold;
     }
 }

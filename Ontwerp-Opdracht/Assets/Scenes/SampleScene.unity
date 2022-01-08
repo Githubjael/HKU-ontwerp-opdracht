@@ -767,7 +767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drawMode: 2
-  levelOfDetail: 6
+  editorPreviewLOD: 0
   noiseScale: 352.18
   octaves: 2
   persistance: 0.42
