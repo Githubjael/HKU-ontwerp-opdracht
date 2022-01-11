@@ -7,7 +7,7 @@ using UnityEngine;
 public class MapGenerator : MonoBehaviour
 {
     //om te bepalen als de resultaten in black/white noise moet zijn of in kleur
-    public enum DrawMode {noiseMap, colorMap, Mesh}
+    public enum DrawMode {noiseMap, colorMap, Mesh, FallOffMap}
     public DrawMode drawMode;
 
     public Noise.NormalizeMode normalizeMode;
@@ -52,6 +52,10 @@ public class MapGenerator : MonoBehaviour
         {
             display.DrawMesh(MeshGenerator.GenerateTerrainMesh(mapData.heightMap, meshHeightMultiplier, meshHeightCurve, editorPreviewLOD),
                 TextureGenerator.TextureFromColorMap(mapData.colorMap, mapChunkSize, mapChunkSize));
+        }
+        else if(drawMode == DrawMode.FallOffMap)
+        {
+            display.DrawTexture(TextureGenerator.TextureFromHeightMap(FallOffGenerator.generateFallOffMap(mapChunkSize)));
         }
     }
 
