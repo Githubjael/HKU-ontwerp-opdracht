@@ -172,6 +172,8 @@ public class MapGenerator : MonoBehaviour
         {
             octaves = 0;
         }
+
+        fallOffMap = FallOffGenerator.GenerateFallOffMap(mapChunkSize);
     }
 
     struct MapThreadInfo<T>
