@@ -12,12 +12,11 @@ public class MeshGenerator
 
         int borederedSize = heightMap.GetLength(0);
         int meshSize = borederedSize - 2 * meshSimplificationIncrement;
+        int verticesPerLine = (meshSize - 1) / meshSimplificationIncrement + 1;
         int meshSizeUnsimplfied = borederedSize - 2;
 
         float topLeftX = (meshSizeUnsimplfied - 1) / -2f;
         float topLeftZ = (meshSizeUnsimplfied - 1) / 2f;
-
-        int verticesPerLine = (meshSize - 1) / meshSimplificationIncrement + 1;
 
         MeshData meshData = new MeshData(verticesPerLine);
 
@@ -49,12 +48,9 @@ public class MeshGenerator
             for (int x = 0; x < borederedSize; x+= meshSimplificationIncrement)
             {
                 int vertexIndex = vertexIndicesMap[x, y];
-
+                float height = heightCurve.Evaluate(heightMap[x, y]) * heightMultiplier;
                 Vector2 percent = new Vector2((x - meshSimplificationIncrement) / (float)meshSize, 
                     (y - meshSimplificationIncrement) / (float)meshSize);
-
-                float height = heightCurve.Evaluate(heightMap[x, y]) * heightMultiplier;
-
                 Vector3 vertexPosition = new Vector3(topLeftX + percent.x * meshSizeUnsimplfied, 
                     height, topLeftZ - percent.y * meshSizeUnsimplfied);
 
@@ -66,7 +62,7 @@ public class MeshGenerator
                     int b = vertexIndicesMap[x + meshSimplificationIncrement, y];
                     int c = vertexIndicesMap[x, y + meshSimplificationIncrement];
                     int d = vertexIndicesMap[x + meshSimplificationIncrement, y + meshSimplificationIncrement];
-                    meshData.AddTriangle(a, b, c);
+                    meshData.AddTriangle(a, d, c);
                     meshData.AddTriangle(d, a, b);
                 }
 
