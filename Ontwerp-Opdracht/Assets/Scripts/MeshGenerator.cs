@@ -12,11 +12,12 @@ public class MeshGenerator
 
         int borederedSize = heightMap.GetLength(0);
         int meshSize = borederedSize - 2 * meshSimplificationIncrement;
-        int verticesPerLine = (meshSize - 1) / meshSimplificationIncrement + 1;
-        int meshSizeUnsimplfied = borederedSize - 2;
+        int meshSizeUnsimplified = borederedSize - 2;
 
-        float topLeftX = (meshSizeUnsimplfied - 1) / -2f;
-        float topLeftZ = (meshSizeUnsimplfied - 1) / 2f;
+        int verticesPerLine = (meshSize - 1) / meshSimplificationIncrement + 1;
+
+        float topLeftX = (meshSizeUnsimplified - 1) / -2f;
+        float topLeftZ = (meshSizeUnsimplified - 1) / 2f;
 
         MeshData meshData = new MeshData(verticesPerLine);
 
@@ -51,8 +52,8 @@ public class MeshGenerator
                 float height = heightCurve.Evaluate(heightMap[x, y]) * heightMultiplier;
                 Vector2 percent = new Vector2((x - meshSimplificationIncrement) / (float)meshSize, 
                     (y - meshSimplificationIncrement) / (float)meshSize);
-                Vector3 vertexPosition = new Vector3(topLeftX + percent.x * meshSizeUnsimplfied, 
-                    height, topLeftZ - percent.y * meshSizeUnsimplfied);
+                Vector3 vertexPosition = new Vector3(topLeftX + percent.x * meshSizeUnsimplified, 
+                    height, topLeftZ - percent.y * meshSizeUnsimplified);
 
                 meshData.AddVertex(vertexPosition, percent, vertexIndex);
 
