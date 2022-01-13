@@ -222,5 +222,6 @@ public class EndlessTerrain : MonoBehaviour
     {
         public int lod;
         public float visibleDstThreshold;
+        public bool useForCollider;
     }
 }
