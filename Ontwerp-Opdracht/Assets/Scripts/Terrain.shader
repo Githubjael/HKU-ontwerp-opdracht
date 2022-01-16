@@ -27,7 +27,7 @@ Shader "Custom/Terrain"
 
         float InverseLerp(float a, float b, float value) 
         {
-            return saturate(value - a) / (b - a);
+            return saturate((value - a) / (b - a));
         }
 
         //// Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
