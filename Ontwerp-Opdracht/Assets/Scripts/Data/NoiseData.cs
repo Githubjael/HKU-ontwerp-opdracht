@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenuAttribute()]
-public class NoiseData : ScriptableObject
+public class NoiseData : UpdatableData
 {
     public Noise.NormalizeMode normalizeMode;
 
@@ -18,7 +18,7 @@ public class NoiseData : ScriptableObject
     public Vector2 offset;
 
 
-    private void OnValidate()
+    protected override void OnValidate()
     {
         //lacunarity mag niet onder 1
         if(lacunarity< 1)
@@ -29,7 +29,9 @@ public class NoiseData : ScriptableObject
         if (octaves < 0)
         {
             octaves = 0;
-        }   
+        }
+
+        base.OnValidate();
     }
 
 }
