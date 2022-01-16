@@ -9,27 +9,11 @@ public class MapGenerator : MonoBehaviour
     //om te bepalen als de resultaten in black/white noise moet zijn of in kleur
     public enum DrawMode {noiseMap, colorMap, Mesh, FallOffMap}
     public DrawMode drawMode;
-
-    public Noise.NormalizeMode normalizeMode;
-
-    public bool useFlatShading;
+    public TerrainData terrainData;
+    public NoiseData noiseData;
 
     [Range(0, 6)]
     public int editorPreviewLOD;
-    public float noiseScale;
-
-    public int octaves;
-    [Range(0, 1)]
-    public float persistance;
-    public float lacunarity;
-
-    public int seed;
-    public Vector2 offset;
-
-    public float meshHeightMultiplier;
-    public AnimationCurve meshHeightCurve;
-
-    public bool useFallOff;
 
     public bool autoUpdate;
 
@@ -54,7 +38,7 @@ public class MapGenerator : MonoBehaviour
             {
                 instance = FindObjectOfType<MapGenerator>();
             }
-            if (instance.useFlatShading)
+            if (instance.terrainData.useFlatShading)
             {
                 return 95;
             }
@@ -80,8 +64,8 @@ public class MapGenerator : MonoBehaviour
         }
         else if (drawMode == DrawMode.Mesh)
         {
-            display.DrawMesh(MeshGenerator.GenerateTerrainMesh(mapData.heightMap, meshHeightMultiplier,
-                meshHeightCurve, editorPreviewLOD, useFlatShading),
+            display.DrawMesh(MeshGenerator.GenerateTerrainMesh(mapData.heightMap, terrainData.meshHeightMultiplier,
+                terrainData.meshHeightCurve, editorPreviewLOD, terrainData.useFlatShading),
                 TextureGenerator.TextureFromColorMap(mapData.colorMap, mapChunkSize, mapChunkSize));
         }
         else if(drawMode == DrawMode.FallOffMap)
@@ -120,7 +104,8 @@ public class MapGenerator : MonoBehaviour
 
     void MeshDataThread(MapData mapData, int lod, Action<MeshData> callback)
     {
-        MeshData meshData = MeshGenerator.GenerateTerrainMesh(mapData.heightMap, meshHeightMultiplier, meshHeightCurve, lod, useFlatShading);
+        MeshData meshData = MeshGenerator.GenerateTerrainMesh(mapData.heightMap, terrainData.meshHeightMultiplier, 
+            terrainData.meshHeightCurve, lod, terrainData.useFlatShading);
         lock (meshDataThreadInfoQueue)
         {
             meshDataThreadInfoQueue.Enqueue(new MapThreadInfo<MeshData>(callback, meshData));
@@ -150,16 +135,17 @@ public class MapGenerator : MonoBehaviour
 
     MapData GenerateMapData(Vector2 center)
     {
-        float[,] noiseMap = Noise.GenerateNoiseMap(mapChunkSize + 2, mapChunkSize + 2, seed, noiseScale, octaves, 
-            persistance, lacunarity, center + offset, normalizeMode);
+        float[,] noiseMap = Noise.GenerateNoiseMap(mapChunkSize + 2, mapChunkSize + 2, noiseData.seed, 
+            noiseData.noiseScale, noiseData.octaves,
+            noiseData.persistance, noiseData.lacunarity, center + noiseData.offset, noiseData.normalizeMode);
 
         Color[] colorMap = new Color[mapChunkSize * mapChunkSize];
 
-        for(int y = octaves; y < mapChunkSize; y++) 
+        for(int y = noiseData.octaves; y < mapChunkSize; y++) 
         { 
             for (int x = 0; x < mapChunkSize; x++)
             {
-                if(useFallOff)
+                if(terrainData.useFallOff)
                 {
                     noiseMap[x, y] = Mathf.Clamp01(noiseMap[x, y] - fallOffMap[x, y]);
                 }
@@ -184,17 +170,6 @@ public class MapGenerator : MonoBehaviour
 
     private void OnValidate()
     {
-        //lacunarity mag niet onder 1
-        if(lacunarity < 1)
-        {
-            lacunarity = 1;
-        }
-        //octaves mag niet onder 0
-        if(octaves < 0)
-        {
-            octaves = 0;
-        }
-
         fallOffMap = FallOffGenerator.GenerateFallOffMap(mapChunkSize);
     }
 
