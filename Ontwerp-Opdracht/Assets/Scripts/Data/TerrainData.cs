@@ -7,9 +7,9 @@ public class TerrainData : UpdatableData
 {
     public float uniformScale = 2f;
 
-    public float meshHeightMultiplier;
-    public AnimationCurve meshHeightCurve;
-
     public bool useFallOff;
     public bool useFlatShading;
+
+    public float meshHeightMultiplier;
+    public AnimationCurve meshHeightCurve;
 }

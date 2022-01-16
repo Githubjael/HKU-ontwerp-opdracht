@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TextureData : UpdatableData
 {
-    public void ApplyToMaterial()
+    public void ApplyToMaterial( Material material)
     {
         //later updaten
     }

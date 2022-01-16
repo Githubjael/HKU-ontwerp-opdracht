@@ -144,19 +144,18 @@ public class MapGenerator : MonoBehaviour
         {
             if(fallOffMap == null)
             {
-                FallOffGenerator.GenerateFallOffMap(mapChunkSize + 2);
+                fallOffMap = FallOffGenerator.GenerateFallOffMap(mapChunkSize + 2);
             }
-        }
 
-        for(int y = noiseData.octaves; y < mapChunkSize + 2; y++) 
-        { 
-            for (int x = 0; x < mapChunkSize + 2; x++)
-            {
-                if(terrainData.useFallOff)
+            for(int y = noiseData.octaves; y < mapChunkSize + 2; y++) 
+            { 
+                for (int x = 0; x < mapChunkSize + 2; x++)
                 {
-                    noiseMap[x, y] = Mathf.Clamp01(noiseMap[x, y] - fallOffMap[x, y]);
+                    if(terrainData.useFallOff)
+                    {
+                        noiseMap[x, y] = Mathf.Clamp01(noiseMap[x, y] - fallOffMap[x, y]);
+                    }
                 }
-                
             }
         }
 
