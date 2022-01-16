@@ -9,8 +9,12 @@ public class MapGenerator : MonoBehaviour
     //om te bepalen als de resultaten in black/white noise moet zijn of in kleur
     public enum DrawMode {noiseMap, Mesh, FallOffMap}
     public DrawMode drawMode;
+
     public TerrainData terrainData;
     public NoiseData noiseData;
+    public TextureData textureData;
+
+    public Material terrainMaterial;
 
     [Range(0, 6)]
     public int editorPreviewLOD;
@@ -28,6 +32,11 @@ public class MapGenerator : MonoBehaviour
         {
             DrawMapInEditor();
         }
+    }
+
+    void OnTextureValuesUpdated()
+    {
+        textureData.ApplyToMaterial(terrainMaterial);
     }
 
     public int mapChunkSize
@@ -128,7 +137,8 @@ public class MapGenerator : MonoBehaviour
     {
         float[,] noiseMap = Noise.GenerateNoiseMap(mapChunkSize + 2, mapChunkSize + 2, noiseData.seed, 
             noiseData.noiseScale, noiseData.octaves,
-            noiseData.persistance, noiseData.lacunarity, center + noiseData.offset, noiseData.normalizeMode);
+            noiseData.persistance, noiseData.lacunarity,
+            center + noiseData.offset, noiseData.normalizeMode);
 
         if (terrainData.useFallOff)
         {
@@ -164,6 +174,12 @@ public class MapGenerator : MonoBehaviour
         {
             terrainData.OnValuesUpdated -= OnValuesUpdated;
             noiseData.OnValuesUpdated += OnValuesUpdated;
+        }
+
+        if(textureData != null)
+        {
+            textureData.OnValuesUpdated -= OnTextureValuesUpdated;
+            textureData.OnValuesUpdated += OnTextureValuesUpdated;
         }
     }
 
