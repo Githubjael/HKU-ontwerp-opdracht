@@ -12,13 +12,6 @@ public class TextureData : UpdatableData
 
     public Layer[] layers;
 
-    public Color[] baseColors;
-    [Range(0, 1)]
-    public float[] baseStartHeights;
-
-    [Range(0, 1)]
-    public float[] baseBlends;
-
     float savedMinHeight;
     float savedMaxHeight;
 
