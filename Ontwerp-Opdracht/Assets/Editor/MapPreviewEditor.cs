@@ -3,26 +3,26 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 //zonder dit wordt het knopje niet in inspector gezien
-[CustomEditor(typeof(MapGenerator))]
-public class MapGeneratorEditor : Editor
+[CustomEditor(typeof(MapPreview))]
+public class MapPreviewEditor : Editor
 {
     //Make button to generate map in editor
     public override void OnInspectorGUI()
     {
-        MapGenerator mapGen = (MapGenerator)target;
+        MapPreview mapPreview = (MapPreview)target;
 
         if (DrawDefaultInspector())
         {
-            if (mapGen.autoUpdate) 
+            if (mapPreview.autoUpdate) 
             {
-                mapGen.DrawMapInEditor();
+                mapPreview.DrawMapInEditor();
             }
         }
 
 
         if (GUILayout.Button("Generate"))
         {
-            mapGen.DrawMapInEditor();
+            mapPreview.DrawMapInEditor();
         }
     }
 }
