@@ -6,7 +6,7 @@ public class Lookat : MonoBehaviour
 {
     public Transform LookatObject;
 
-    public void Update()
+    public void Start()
     {
         transform.LookAt(LookatObject);
     }
