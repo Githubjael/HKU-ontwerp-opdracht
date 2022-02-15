@@ -17,9 +17,7 @@ public class Lookat : MonoBehaviour
 
     public void Follow()
     {
-        var Xposition = gameObject.transform.position.x + OffsetX;
-        var Yposition = gameObject.transform.position.y + OffsetX;
-        var Zposition = gameObject.transform.position.z + OffsetX;
-        gameObject.transform.position = new Vector3(Xposition, Yposition, Zposition);
+        gameObject.transform.position = new Vector3(LookatObject.position.x + OffsetX, LookatObject.position.y
+            + OffsetY, LookatObject.position.z + OffsetZ);
     }
 }
